@@ -28,7 +28,7 @@ def index():
     return render_template('index_html')
 
 
-@app.route('/predict')
+@app.route('/predict',methods=['POST'])
 def upload():
     if request.method == 'POST':
 

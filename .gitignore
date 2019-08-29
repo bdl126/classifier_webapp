@@ -9,6 +9,9 @@ __pycache__/
 # Intellij IDE
 .idea/
 
+# vscode
+.vscode/
+
 # Distribution / packaging
 .Python
 build/
