@@ -1,6 +1,7 @@
-from flask import Flask
-from keras.models import load_model
-from keras.applications.resnet50 import ResNet50
+from flask import Flask,redirect, url_for, request, render_template
+# from keras.models import load_model
+# from keras.applications.resnet50 import ResNet50
+# from gevent.pywsgi import WSGIServer
 
 app = Flask(__name__)
 
@@ -9,7 +10,7 @@ app = Flask(__name__)
 
 MODEL_PATH='models/your_model.h5'
 
-model = ResNet50(weights='imagenet')
+# model = ResNet50(weights='imagenet')
 
 
 
@@ -23,11 +24,14 @@ def model_predict (img_path, model):
 
 	return preds
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
-    return render_template('index_html')
+    return render_template('index.html')
 
-
+@app.route('/')
+def hello():
+    return render_template('hello.html')
+	
 @app.route('/predict',methods=['POST'])
 def upload():
     if request.method == 'POST':
@@ -37,3 +41,5 @@ def upload():
     	preds = model_predict(file_path, model)
     	pred_class = decode_prediction(preds, top=1)
     	return pred_class
+
+
