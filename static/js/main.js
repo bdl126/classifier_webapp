@@ -19,9 +19,7 @@ $(document).ready(function(){
         var files = $('#imageUpload')
         var files1 = $('#imageUpload')[0]
         var files2 = $('#imageUpload')[0].files[0]
-        console.log(files2)
         fd.append('file',files2)
-        console.log(fd)
         $.ajax ({
             type:'POST',
             url: '/predict',
